@@ -7,11 +7,12 @@ public class LogicsImpl implements Logics {
 	
 	private final Pair<Integer,Integer> pawn;
 	private Pair<Integer,Integer> knight;
-	private final PositionStrategy positionStrategy = new RandomPositionStrategy();
+	private PositionStrategy positionStrategy ;
 	private final int size;
 	 
-    public LogicsImpl(int size){
+    public LogicsImpl(int size, PositionStrategy strategy){
     	this.size = size;
+		this.positionStrategy = strategy;
         this.pawn = this.positionStrategy.createPosition(size);
         this.knight = this.positionStrategy.createPosition(size);
     }
