@@ -1,9 +1,7 @@
 package e1Test;
 
-import e1.Logics;
+import e1.*;
 
-import e1.LogicsImpl;
-import e1.Pair;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -16,7 +14,7 @@ public class LogicTest {
 
     @BeforeEach
     void beforeEach() {
-        this.logics = new LogicsImpl(size, initialKnightPos, initialPawnPos);
+        this.logics = new LogicsImpl(size, new KnightPiece(initialKnightPos), initialPawnPos);
     }
 
     @Test

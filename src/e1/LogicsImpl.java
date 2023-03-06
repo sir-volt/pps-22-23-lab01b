@@ -5,19 +5,19 @@ import java.util.*;
 
 public class LogicsImpl implements Logics {
 	
-	private final Pair<Integer,Integer> pawn;
-	private Pair<Integer,Integer> knight;
-	private PositionStrategy positionStrategy ;
+	private final Pair<Integer, Integer> pawn;
+	private KnightPiece knight;
+	private PositionStrategy positionStrategy;
 	private final int size;
 	 
     public LogicsImpl(int size, PositionStrategy strategy){
     	this.size = size;
 		this.positionStrategy = strategy;
         this.pawn = this.positionStrategy.createPosition(size);
-        this.knight = this.positionStrategy.createPosition(size);
+        this.knight = new KnightPiece(this.positionStrategy.createPosition(size));
     }
 
-	public LogicsImpl(int size, Pair<Integer, Integer> initialKnightPos, Pair<Integer, Integer> initialPawnPos) {
+	public LogicsImpl(int size, KnightPiece initialKnightPos, Pair<Integer, Integer> initialPawnPos) {
 		this.size = size;
 		this.knight = initialKnightPos;
 		this.pawn = initialPawnPos;
@@ -25,17 +25,8 @@ public class LogicsImpl implements Logics {
     
 	@Override
 	public boolean hit(int row, int col) {
-		if (row<0 || col<0 || row >= this.size || col >= this.size) {
-			throw new IndexOutOfBoundsException();
-		}
-		// Below a compact way to express allowed moves for the knight
-		int x = row-this.knight.getX();
-		int y = col-this.knight.getY();
-		if (x!=0 && y!=0 && Math.abs(x)+Math.abs(y)==3) {
-			this.knight = new Pair<>(row,col);
-			return this.pawn.equals(this.knight);
-		}
-		return false;
+		this.knight.move(row, col, this.size);
+		return this.pawn.equals(this.knight);
 	}
 
 	@Override
