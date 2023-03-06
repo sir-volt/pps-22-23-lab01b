@@ -1,18 +1,19 @@
 package e1;
 
+import javax.swing.text.Position;
 import java.util.*;
 
 public class LogicsImpl implements Logics {
 	
 	private final Pair<Integer,Integer> pawn;
 	private Pair<Integer,Integer> knight;
-	private final Random random = new Random();
+	private final PositionStrategy positionStrategy = new RandomPositionStrategy();
 	private final int size;
 	 
     public LogicsImpl(int size){
     	this.size = size;
-        this.pawn = this.randomEmptyPosition();
-        this.knight = this.randomEmptyPosition();	
+        this.pawn = this.positionStrategy.createPosition(size);
+        this.knight = this.positionStrategy.createPosition(size);
     }
 
 	public LogicsImpl(int size, Pair<Integer, Integer> initialKnightPos, Pair<Integer, Integer> initialPawnPos) {
@@ -20,12 +21,6 @@ public class LogicsImpl implements Logics {
 		this.knight = initialKnightPos;
 		this.pawn = initialPawnPos;
 	}
-    
-	private final Pair<Integer,Integer> randomEmptyPosition(){
-    	Pair<Integer,Integer> pos = new Pair<>(this.random.nextInt(size),this.random.nextInt(size));
-    	// the recursive call below prevents clash with an existing pawn
-    	return this.pawn!=null && this.pawn.equals(pos) ? randomEmptyPosition() : pos;
-    }
     
 	@Override
 	public boolean hit(int row, int col) {
