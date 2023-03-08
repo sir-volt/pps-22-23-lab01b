@@ -26,12 +26,12 @@ public class LogicsImpl implements Logics {
 	@Override
 	public boolean hit(int row, int col) {
 		this.knight.move(row, col, this.size);
-		return this.pawn.equals(this.knight);
+		return this.pawn.equals(this.knight.getPos());
 	}
 
 	@Override
 	public boolean hasKnight(int row, int col) {
-		return this.knight.equals(new Pair<>(row,col));
+		return this.knight.getPos().equals(new Pair<>(row,col));
 	}
 
 	@Override

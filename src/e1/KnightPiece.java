@@ -11,6 +11,8 @@ public class KnightPiece {
     }
 
     public void move(int row, int col, int size) {
-        this.movementStrategy.moveIfPossible(pos, new Pair<>(row, col), size);
+        this.pos = this.movementStrategy.moveIfPossible(pos, new Pair<>(row, col), size);
     }
+
+    public Pair<Integer,Integer> getPos() {return this.pos;}
 }
