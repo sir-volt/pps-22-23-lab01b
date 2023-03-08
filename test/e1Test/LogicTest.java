@@ -8,13 +8,13 @@ import static org.junit.jupiter.api.Assertions.*;
 public class LogicTest {
 
     private Logics logics;
-    private final int size = 5;
+    private static final int SIZE = 5;
     private final Pair<Integer, Integer> initialKnightPos = new Pair<>(3, 1);
-    private final Pair<Integer, Integer> initialPawnPos = new Pair<>(size - 1, 3);
+    private final Pair<Integer, Integer> initialPawnPos = new Pair<>(SIZE - 1, 3);
 
     @BeforeEach
     void beforeEach() {
-        this.logics = new LogicsImpl(size, new KnightPiece(initialKnightPos), initialPawnPos);
+        this.logics = new LogicsImpl(SIZE, new KnightPiece(initialKnightPos), initialPawnPos);
     }
 
     @Test

@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class PositionStrategyTest {
 
-    private final int size = 5;
+    private static final int SIZE = 5;
     private static final int NUM_ELEMENTS = 10;
     private PositionStrategy positionStrategy;
     private Set<Pair<Integer,Integer>> elements;
@@ -26,7 +26,7 @@ public class PositionStrategyTest {
     @Test
     void randomPositionStrategy() {
         for(int i = 0; i < NUM_ELEMENTS; i++){
-            this.elements.add(this.positionStrategy.createPosition(size));
+            this.elements.add(this.positionStrategy.createPosition(SIZE));
         }
         assertEquals(NUM_ELEMENTS, this.elements.size());
     }

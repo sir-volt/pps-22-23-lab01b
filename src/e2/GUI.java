@@ -16,8 +16,8 @@ public class GUI extends JFrame {
     private final Map<JButton,Pair<Integer,Integer>> buttons = new HashMap<>();
     private final Logics logics;
     
-    public GUI(int size) {
-        this.logics = new LogicsImpl(size);
+    public GUI(int size, int mines) {
+        this.logics = new LogicsImpl(size, mines);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(100*size, 100*size);
         
@@ -27,10 +27,11 @@ public class GUI extends JFrame {
         ActionListener onClick = (e)->{
             final JButton bt = (JButton)e.getSource();
             final Pair<Integer,Integer> pos = buttons.get(bt);
-            boolean aMineWasFound = false; // call the logic here to tell it that cell at 'pos' has been seleced
+            boolean aMineWasFound = this.logics.mineHit(pos); // call the logic here to tell it that cell at 'pos' has been seleced
             if (aMineWasFound) {
                 quitGame();
                 JOptionPane.showMessageDialog(this, "You lost!!");
+                System.exit(0);
             } else {
                 drawBoard();            	
             }
@@ -70,6 +71,10 @@ public class GUI extends JFrame {
     private void quitGame() {
         this.drawBoard();
     	for (var entry: this.buttons.entrySet()) {
+            if(this.logics.mineHit(entry.getValue())) {
+                entry.getKey().setText("*");
+                entry.getKey().setEnabled(false);
+            }
             // call the logic here
             // if this button is a mine, draw it "*"
             // disable the button
