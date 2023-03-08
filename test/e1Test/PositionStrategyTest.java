@@ -24,7 +24,7 @@ public class PositionStrategyTest {
     }
 
     @Test
-    void randomPositionStrategy() {
+    void randomPositionStrategyTest() {
         for(int i = 0; i < NUM_ELEMENTS; i++){
             this.elements.add(this.positionStrategy.createPosition(SIZE));
         }

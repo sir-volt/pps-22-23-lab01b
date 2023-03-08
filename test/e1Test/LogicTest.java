@@ -18,7 +18,7 @@ public class LogicTest {
     }
 
     @Test
-    void testKnightFailMovement() {
+    void knightFailMovementTest() {
         Pair<Integer, Integer> failTest = new Pair<>(0, 1);
         this.logics.hit(failTest.getX(), failTest.getY());
         assertFalse(this.logics.hasKnight(failTest.getX(), failTest.getY()));
@@ -26,14 +26,14 @@ public class LogicTest {
     }
 
     @Test
-    void testSuccessKnightMovement() {
+    void successKnightMovementTest() {
         Pair<Integer, Integer> succTest = new Pair<>(2, 3);
         this.logics.hit(succTest.getX(), succTest.getY());
         assertTrue(this.logics.hasKnight(succTest.getX(), succTest.getY()));
     }
 
     @Test
-    void testPawnHit() {
+    void pawnHitTest() {
         assertTrue(this.logics.hit(this.initialPawnPos.getX(), this.initialPawnPos.getY()));
     }
 }

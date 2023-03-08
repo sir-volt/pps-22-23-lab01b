@@ -19,13 +19,13 @@ public class MovementStrategyTest {
     }
 
     @Test
-    void moveKnightFail() {
+    void moveKnightFailTest() {
         Pair<Integer, Integer> failPos = new Pair<>(3, 3);
         assertNotEquals(failPos, this.movementStrategy.moveIfPossible(this.startingPos, failPos, this.SIZE));
     }
 
     @Test
-    void moveKnightSucc() {
+    void moveKnightSuccTest() {
         Pair<Integer,Integer> correctPos = new Pair<>(1, 2);
         assertEquals(correctPos, this.movementStrategy.moveIfPossible(this.startingPos, correctPos, this.SIZE));
     }
